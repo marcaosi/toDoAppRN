@@ -4,23 +4,16 @@ import {
     View,
     Text,
     StyleSheet,
-    TextInput,
-    TouchableOpacity
+    TextInput
 } from 'react-native'
-
-import { useTaskList } from '../../context/TaskList'
+import { useNewTask } from '../../context/NewTask'
 
 const Header = () => {
-    const [newTask, setNewTask] = useState("Add a new task")
-    const { taskList, setTaskList } = useTaskList()
+    const { newTask, setNewTask } = useNewTask()
     const handleText = (value) => {
         setNewTask(value)
     }
 
-    const addItem = (item) => {
-        const newTaskList = [...taskList, item]
-        setTaskList(newTaskList)
-    }
     return (
         <>
             <Text style={style.title}>ToDo List App</Text>
@@ -30,12 +23,6 @@ const Header = () => {
                     style={style.input}
                     onChangeText={handleText}
                 />
-                <TouchableOpacity
-                    style={style.addButton}
-                    onPress={() => addItem(newTask)}
-                >
-                    <Text style={style.addButtonText}>Add</Text>
-                </TouchableOpacity>
             </View>
         </>
     )
